@@ -1,73 +1,71 @@
-# 🐘 SPEEM App
+# ✨ SPEEM - Stack-Powered Elephants Entering the Matrix ✨  
+*“When elephants code, the Matrix trembles.”*  
 
 ## ⚠️ 🚧 Under Active Development 🚧 ⚠️
-This project is in early stages—features, APIs, and UX will evolve rapidly. Breaking changes may occur.
+The SPEEM project is in early stages—features, docs, and APIs will evolve rapidly.
 
 ---
 
-## About SPEEM App
-
-SPEEM App is the Rust & Iced–powered client of **✨ Stack-Powered Elephants Entering the Matrix ✨**. It delivers a native-feeling, cross-platform Matrix experience on macOS, Windows, and Linux with minimal binary footprint.
+## About SPEEM
+SPEEM is a cross‑platform Matrix client built in **Rust** and powered by **Slint**. It delivers a native look & feel, lean binary footprint, and end‑to‑end encrypted messaging on macOS, Windows, and Linux.
 
 ---
 
 ## Key Technologies
+- **Rust Core:** Uses the [matrix-rust-sdk](https://github.com/matrix-org/matrix-rust-sdk) for protocol handling, synchronization, and cryptography.
+- **Slint GUI:** GPU‑accelerated, responsive, and native‑feeling interfaces.
+- **Modular Monorepo:** Single repo containing all code—core library, and desktop app for simplified dependency management.
+- **E2E Encryption:** Full support for Olm & Megolm ensuring privacy.
+- **Cross‑Platform Packaging:** One codebase targeting macOS, Windows, and Linux with minimal overhead.
 
-- **Rust Core:** Built atop the [matrix-rust-sdk](https://github.com/matrix-org/matrix-rust-sdk) for Client–Server API, synchronization, and encryption (Olm/Megolm).
-- **Iced GUI:** GPU-accelerated, immediate-mode UI toolkit for responsive, native-style interfaces.
-- **Async Runtime:** Uses [Tokio](https://tokio.rs/) and `futures` for efficient networking and concurrency.
-- **Modular Monorepo:** This desktop app lives under `desktop/` alongside other SPEEM modules for unified development.
+---
+
+## Project Structure (Monorepo)
+```
+/  
+├─ core/         # Rust shared library: Matrix protocol, crypto, sync logic
+├─ desktop/      # Desktop client (Rust + Slint) for macOS, Windows, Linux
+├─ docs/         # Documentation, design sketches, roadmap
+└─ ci/           # CI/CD workflows, linting, formatting configs
+```
 
 ---
 
 ## Features
-
-- **Secure Login & Sync:** Sign in with Matrix credentials and sync rooms incrementally.
-- **Room List & Timeline:** Browse joined rooms and view message history.
-- **Send & Receive Messages:** Real-time text chat with secure handling.
-- **End-to-End Encryption:** Full support for Olm and Megolm protocols.
-- **Rich Content:** Markdown rendering, inline images, and file attachments.
-- **Theming & Notifications:** Light/dark mode toggle and native desktop alerts.
-
----
-
-## Getting Started
-
-1. Clone the monorepo:
-   ```bash
-   git clone https://github.com/speemapp/speem.git
-   cd speem/desktop
-   ```
-2. Build and run:
-   ```bash
-   cargo run --release
-   ```
-3. Configure via `config.toml` (create one beside the binary):
-   ```toml
-   server_url = "https://matrix.org"
-   username = "@alice:matrix.org"
-   password = "••••••"
-   ```
+- **Fast Login & Sync:** Secure authentication and incremental room updates.
+- **Persistent Chat History:** Encrypted local storage for messages and media.
+- **Rich Text & Markdown:** Support for formatted messages, inline images, and attachments.
+- **Group & Direct Chats:** Public rooms, private groups, and DMs.
+- **Notifications & Theming:** Desktop notifications, light/dark mode.
+- **Modular UI:** Easily extendable widgets and theming powered by Slint.
 
 ---
 
-## Project Structure
+## Development Roadmap
 
-```
-desktop/
-├─ src/           # Rust source code for the desktop client
-├─ assets/        # Icons, stylesheets, and UI assets
-├─ config.toml    # Default configuration template
-└─ Cargo.toml     # Desktop app manifest
-```
+### Proof of Concept
+- Basic login & authentication flow
+- Room list and message timeline
+- Send & receive text messages
+
+### Minimum Viable Product (MVP)
+- End-to-end encryption (Olm/Megolm)
+- Multimedia attachments & previews
+- Room search functionality
+- Cross-platform packaging & installers
+
+### Version 1.0
+- System integrations: notifications, tray/menu support
+- Advanced settings: proxy, custom server URLs
+- Performance optimizations & memory tuning
+- Accessibility improvements & localization
 
 ---
 
-
-## License
-
-Apache-2.0 OR MIT
+## About the Developer
+Created by [Wassim Mansouri](https://wassimans.com).  
+Explore the code on [GitHub](https://github.com/speemapp) or visit [speem.app](https://speem.app) for updates.
 
 ---
 
-*“When elephants code, the Matrix trembles.”*
+© 2025 SPEEM. All rights reserved.
