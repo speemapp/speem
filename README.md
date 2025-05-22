@@ -52,6 +52,8 @@ open ../ios/Speem.xcodeproj
 # Open the Android shell
 open ../android
 
+```
+
 ---
 
 ## Roadmap
