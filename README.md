@@ -1,69 +1,69 @@
-# ✨ SPEEM - Stack-Powered Elephants Entering the Matrix ✨  
-*“When elephants code, the Matrix trembles.”*  
+# SPEEM  
+**Simple Polkadot E-payments & Exchanges for Mobile**  
+*Secure, peer-to-peer DOT transfers & swaps on iOS & Android*
 
-## ⚠️ 🚧 Under Active Development 🚧 ⚠️
-The SPEEM project is in early stages—features, docs, and APIs will evolve rapidly.
+⚠️ **Proof of Concept — Work in Progress** ⚠️  
+This repository contains an early prototype of SPEEM. Features, APIs and UX will evolve rapidly. No contributions are being accepted at this stage.
 
 ---
 
 ## About SPEEM
-SPEEM is a cross‑platform Matrix client built in **Rust** and powered by **Slint**. It delivers a native look & feel, lean binary footprint, and end‑to‑end encrypted messaging on macOS, Windows, and Linux.
+
+SPEEM is a minimal mobile application demonstrating cross-platform payments on the Polkadot network. It consists of:
+
+- **Rust core** (`speem-core`):
+  - Invoice serialization (JSON ↔ QR)
+  - Substrate RPC via `subxt` or `substrate-api-client`
+  - UniFFI bindings for Swift & Kotlin
+
+- **iOS shell** (SwiftUI):
+  - Camera-based QR scanning
+  - Secure key storage (Keychain/Secure Enclave)
+  - SwiftUI views for invoice display & payment confirmation
+
+- **Android shell** (Kotlin/Compose):
+  - ZXing or ML Kit for QR scanning
+  - Android Keystore for key management
+  - Jetpack Compose for UI
 
 ---
 
-## Key Technologies
-- **Rust Core:** Uses the [matrix-rust-sdk](https://github.com/matrix-org/matrix-rust-sdk) for protocol handling, synchronization, and cryptography.
-- **Slint GUI:** GPU‑accelerated, responsive, and native‑feeling interfaces.
-- **Modular Monorepo:** Single repo containing all code—core library, and desktop app for simplified dependency management.
-- **E2E Encryption:** Full support for Olm & Megolm ensuring privacy.
-- **Cross‑Platform Packaging:** One codebase targeting macOS, Windows, and Linux with minimal overhead.
+## PoC Workflow
+
+1. **Merchant** enters payment details (recipient address, amount, memo) and **generates** a QR code via the Rust core crate.
+2. **Payer** scans the QR code in SPEEM, reviews the invoice, taps **Pay**.
+3. Rust core **builds**, **signs** and **submits** the transaction.
+4. Both parties receive a **finality notification** once the transfer is included on chain.
 
 ---
 
-## Project Structure (Monorepo)
-```
-/  
-├─ core/         # Rust shared library: Matrix protocol, crypto, sync logic
-├─ desktop/      # Desktop client (Rust + Slint) for macOS, Windows, Linux
-├─ docs/         # Documentation, design sketches, roadmap
-└─ ci/           # CI/CD workflows, linting, formatting configs
-```
+## Getting Started
+
+```bash
+git clone https://github.com/speemapp/speem.git
+cd speem
+
+# Build the Rust core
+cd core && cargo build
+
+# Open the iOS shell
+open ../ios/Speem.xcodeproj
+
+# Open the Android shell
+open ../android
 
 ---
 
-## Features
-- **Fast Login & Sync:** Secure authentication and incremental room updates.
-- **Persistent Chat History:** Encrypted local storage for messages and media.
-- **Rich Text & Markdown:** Support for formatted messages, inline images, and attachments.
-- **Group & Direct Chats:** Public rooms, private groups, and DMs.
-- **Notifications & Theming:** Desktop notifications, light/dark mode.
-- **Modular UI:** Easily extendable widgets and theming powered by Slint.
-
----
-
-## Development Roadmap
-
-### Proof of Concept
-- Basic login & authentication flow
-- Room list and message timeline
-- Send & receive text messages
-
-### Minimum Viable Product (MVP)
-- End-to-end encryption (Olm/Megolm)
-- Multimedia attachments & previews
-- Room search functionality
-- Cross-platform packaging & installers
-
-### Version 1.0
-- System integrations: notifications, tray/menu support
-- Advanced settings: proxy, custom server URLs
-- Performance optimizations & memory tuning
-- Accessibility improvements & localization
+## Roadmap
+- **Phase 1 (PoC)**: Invoice QR generation & scan, basic transaction submission
+- **Phase 2**: Finality subscription & push notifications
+- **Phase 3**: Key management screens & UX polish
+- **Phase 4**: App Store & Play Store distribution, licensing
 
 ---
 
 ## About the Developer
-Created by [Wassim Mansouri](https://wassimans.com).  
+Created by [Wassim Mansouri](https://wassimans.com) || [LinkedIn](https://www.linkedin.com/in/wassimans/).
 Explore the code on [GitHub](https://github.com/speemapp) or visit [speem.app](https://speem.app) for updates.
 
 ---
