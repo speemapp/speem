@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             SPEEMTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "SPEEM!",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
