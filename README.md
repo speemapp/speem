@@ -1,5 +1,5 @@
 # SPEEM  
-**Simple Polkadot E-payments & Exchanges for Mobile**
+**Secure Peer-to-peer Encrypted Electronic Money**
 *Secure, peer-to-peer DOT transfers & swaps on iOS & Android*
 
 ⚠️ **Proof of Concept — Work in Progress** ⚠️
@@ -94,10 +94,10 @@ open ../android
 ---
 
 ## Roadmap
-- **Phase 1 (PoC)**: Invoice QR generation & scan, basic transaction submission
-- **Phase 2**: Finality subscription & push notifications
-- **Phase 3**: Key management screens & UX polish
-- **Phase 4**: App Store & Play Store distribution, licensing
+- **Phase 1 (PoC)**: Invoice QR generation & scan, basic transaction submission -> **DOING**
+- **Phase 2**: Finality subscription & push notifications -> **TODO**
+- **Phase 3**: Key management screens & UX polish -> **TODO**
+- **Phase 4**: App Store & Play Store distribution, licensing -> **TODO**
 
 ---
 
