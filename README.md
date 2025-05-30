@@ -1,8 +1,8 @@
 # SPEEM  
-**Simple Polkadot E-payments & Exchanges for Mobile**  
+**Simple Polkadot E-payments & Exchanges for Mobile**
 *Secure, peer-to-peer DOT transfers & swaps on iOS & Android*
 
-⚠️ **Proof of Concept — Work in Progress** ⚠️  
+⚠️ **Proof of Concept — Work in Progress** ⚠️
 This repository contains an early prototype of SPEEM. Features, APIs and UX will evolve rapidly. No contributions are being accepted at this stage.
 
 ---
@@ -30,10 +30,47 @@ SPEEM is a minimal mobile application demonstrating cross-platform payments on t
 
 ## PoC Workflow
 
-1. **Merchant** enters payment details (recipient address, amount, memo) and **generates** a QR code via the Rust core crate.
-2. **Payer** scans the QR code in SPEEM, reviews the invoice, taps **Pay**.
-3. Rust core **builds**, **signs** and **submits** the transaction.
-4. Both parties receive a **finality notification** once the transfer is included on chain.
+``` mermaid
+sequenceDiagram
+    participant U as User App
+    participant M as Merchant App
+    participant Core as Rust Core
+    participant Net as Polkadot Network
+    participant History as Local Storage
+
+    Note over U: **Onboarding / Wallet Setup**
+    U->>U: Launch App
+    U->>U: Scan or Enter Wallet Address
+    U->>Core: store_wallet(address)
+    Core-->>History: save_wallet(address)
+
+    Note over U,M: **Wallet Sharing**
+    M->>Core: generate_wallet_qr()
+    Core-->>M: wallet_qr_image
+    M->>U: show_wallet_qr
+    U->>Core: scan_qr()
+    Core-->>U: wallet_address
+
+    Note over M: **Invoice Generation**
+    M->>Core: create_invoice(recipient, amount, memo)
+    Core-->>Core: serialize & QR encode
+    Core-->>M: invoice_qr_image
+    M->>History: save_invoice(invoice)
+
+    Note over U: **Invoice Payment**
+    U->>U: scan_invoice_qr
+    U->>Core: decode_invoice(qr)
+    Core-->>U: invoice_details
+    U->>U: Confirm Payment
+    U->>Core: pay_invoice(details)
+    Core->>Net: submit_extrinsic(tx)
+    Core-->>History: save_invoice(invoice)
+
+    Note over Core,Net: **Wait for Finality**
+    Net-->>Core: finality_event(tx)
+    Core-->>M: notify_finality(tx)
+    Core-->>U: notify_finality(tx)
+```
 
 ---
 
